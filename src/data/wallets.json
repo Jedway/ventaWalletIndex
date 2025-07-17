@@ -1,0 +1,366 @@
+{
+    "last_updated": "2025-07-15",
+    "wallets": [
+      {
+        "name": "Phantom",
+        "image_url": "https://phantom.app/favicon.ico",
+        "platforms": ["iOS", "Android", "Chrome", "Firefox"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": true,
+          "in_app_staking": true,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": false,
+          "push_notifications": true,
+          "solana_pay_qr": "Partial"
+        },
+        "version_tested": "24.1.5",
+        "test_date": "2025-07-10",
+        "notes": "QR support works but only for direct Solana Pay links, not custom invoices."
+      },
+      {
+        "name": "Solflare",
+        "image_url": "https://solflare.com/favicon.ico",
+        "platforms": ["iOS", "Android", "Chrome", "Firefox"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": true,
+          "in_app_staking": true,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": true,
+          "push_notifications": true,
+          "solana_pay_qr": "Yes"
+        },
+        "version_tested": "3.2.0",
+        "test_date": "2025-07-10",
+        "notes": "Full QR support; seamless checkout flow."
+      },
+      {
+        "name": "Backpack",
+        "image_url": "https://backpack.app/favicon.ico",
+        "platforms": ["iOS", "Android", "Chrome"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": true,
+          "in_app_staking": false,
+          "fiat_on_ramp": false,
+          "fiat_off_ramp": false,
+          "push_notifications": true,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "1.5.2",
+        "test_date": "2025-07-10",
+        "notes": "Does not support Solana Pay QR currently."
+      },
+      {
+        "name": "Glow",
+        "image_url": "https://glow.app/favicon.ico",
+        "platforms": ["iOS", "Android"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": true,
+          "in_app_staking": false,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": true,
+          "push_notifications": true,
+          "solana_pay_qr": "Yes"
+        },
+        "version_tested": "2.0.8",
+        "test_date": "2025-07-11",
+        "notes": "Supports QR; UI is intuitive for payments."
+      },
+      {
+        "name": "Decaf",
+        "image_url": "https://decaf.so/favicon.ico",
+        "platforms": ["iOS", "Android"],
+        "custody_model": "Custodial",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": true,
+          "push_notifications": false,
+          "solana_pay_qr": "Partial"
+        },
+        "version_tested": "0.9.4",
+        "test_date": "2025-07-11",
+        "notes": "Partial QR support; only via linked web checkout."
+      },
+      {
+        "name": "Jupiter Wallet",
+        "image_url": "https://jup.ag/favicon.ico",
+        "platforms": ["Chrome", "Firefox"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": false,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "1.1.3",
+        "test_date": "2025-07-12",
+        "notes": "No QR support. Focus on DEX trading."
+      },
+      {
+        "name": "Bitget Wallet",
+        "image_url": "https://web3.bitget.com/favicon.ico",
+        "platforms": ["iOS", "Android"],
+        "custody_model": "Custodial",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": true,
+          "in_app_staking": true,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": true,
+          "push_notifications": true,
+          "solana_pay_qr": "Yes"
+        },
+        "version_tested": "6.7.0",
+        "test_date": "2025-07-12",
+        "notes": "Supports QR; payment flow is slightly slower."
+      },
+      {
+        "name": "OKX Wallet",
+        "image_url": "https://www.okx.com/favicon.ico",
+        "platforms": ["iOS", "Android", "Chrome"],
+        "custody_model": "Custodial",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": true,
+          "in_app_staking": true,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": true,
+          "push_notifications": true,
+          "solana_pay_qr": "Partial"
+        },
+        "version_tested": "5.8.1",
+        "test_date": "2025-07-13",
+        "notes": "Partial support; Solana Pay works for some merchants."
+      },
+      {
+        "name": "Slope",
+        "image_url": "https://slope.finance/favicon.ico",
+        "platforms": ["iOS", "Android"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": false,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "1.3.7",
+        "test_date": "2025-07-13",
+        "notes": "No Solana Pay support."
+      },
+      {
+        "name": "Exodus",
+        "image_url": "https://www.exodus.com/favicon.ico",
+        "platforms": ["iOS", "Android", "Windows", "macOS", "Linux"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": true,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": true,
+          "push_notifications": true,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "24.3.0",
+        "test_date": "2025-07-14",
+        "notes": "No QR support but offers staking and fiat ramps."
+      },
+      {
+        "name": "TokenPocket",
+        "image_url": "https://www.tokenpocket.pro/favicon.ico",
+        "platforms": ["iOS", "Android", "Chrome", "Firefox"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": true,
+          "in_app_staking": false,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": false,
+          "push_notifications": true,
+          "solana_pay_qr": "Partial"
+        },
+        "version_tested": "5.4.2",
+        "test_date": "2025-07-15",
+        "notes": "Supports QR via extension; mobile UI needs extra steps."
+      },
+      {
+        "name": "Guarda Wallet",
+        "image_url": "https://guarda.com/favicon.ico",
+        "platforms": ["iOS", "Android", "Chrome", "Firefox", "Windows", "macOS"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": true,
+          "in_app_staking": false,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": true,
+          "push_notifications": false,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "3.8.0",
+        "test_date": "2025-07-15",
+        "notes": "No QR support in checkout."
+      },
+      {
+        "name": "Fuse Wallet",
+        "image_url": "https://fuse.io/favicon.ico",
+        "platforms": ["Android", "iOS"],
+        "custody_model": "Self-custody (seedless via 2FA)",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": false,
+          "fiat_off_ramp": false,
+          "push_notifications": true,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "2.1.0",
+        "test_date": "2025-07-15",
+        "notes": "Focus on 2FA UX, no Solana Pay."
+      },
+      {
+        "name": "Cake Wallet",
+        "image_url": "https://cakewallet.com/favicon.ico",
+        "platforms": ["iOS", "Android"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "Partial"
+        },
+        "version_tested": "4.2.5",
+        "test_date": "2025-07-15",
+        "notes": "Mobile only; QR works via share payment link."
+      },
+      {
+        "name": "Para",
+        "image_url": "https://para.space/favicon.ico",
+        "platforms": ["Chrome", "Firefox"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": true,
+          "in_app_staking": false,
+          "fiat_on_ramp": false,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "Yes"
+        },
+        "version_tested": "1.0.3",
+        "test_date": "2025-07-15",
+        "notes": "Desktop extension with full QR support."
+      },
+      {
+        "name": "Coinbase Wallet",
+        "image_url": "https://www.coinbase.com/wallet/favicon.ico",
+        "platforms": ["iOS", "Android", "Chrome", "Firefox"],
+        "custody_model": "Self-custody",
+        "features": {
+          "in_app_dex_swap": true,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": false,
+          "push_notifications": true,
+          "solana_pay_qr": "Partial"
+        },
+        "version_tested": "2025.06",
+        "test_date": "2025-07-15",
+        "notes": "QR works but cash‑out slower."
+      },
+      {
+        "name": "Trezor",
+        "image_url": "https://trezor.io/favicon.ico",
+        "platforms": ["Hardware (USB)"],
+        "custody_model": "Self-custody (hardware)",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": false,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "Model T firmware 2.4",
+        "test_date": "2025-07-15",
+        "notes": "Hardware only, no QR support."
+      },
+      {
+        "name": "Ledger Nano X",
+        "image_url": "https://www.ledger.com/favicon.ico",
+        "platforms": ["Hardware (Bluetooth/USB)"],
+        "custody_model": "Self-custody (hardware)",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": true,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "Live App 2.7",
+        "test_date": "2025-07-15",
+        "notes": "Staking works via mobile companion, but no QR."
+      },
+      {
+        "name": "SafePal X1",
+        "image_url": "https://www.safepal.com/favicon.ico",
+        "platforms": ["Hardware (Bluetooth)"],
+        "custody_model": "Self-custody (hardware)",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": false,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "1.0",
+        "test_date": "2025-07-15",
+        "notes": "Air-gapped hardware, no QR."
+      },
+      {
+        "name": "Tangem",
+        "image_url": "https://tangem.com/favicon.ico",
+        "platforms": ["Hardware (NFC card)", "Mobile App"],
+        "custody_model": "Self-custody (hardware)",
+        "features": {
+          "in_app_dex_swap": false,
+          "nft_gallery": false,
+          "in_app_staking": false,
+          "fiat_on_ramp": true,
+          "fiat_off_ramp": false,
+          "push_notifications": false,
+          "solana_pay_qr": "No"
+        },
+        "version_tested": "Card FW 1.2",
+        "test_date": "2025-07-15",
+        "notes": "NFC card; payments via link only."
+      }
+    ]
+  }
+  
