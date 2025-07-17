@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react"
+import { useState, useMemo } from "react"
 import { Switch } from "./components/ui/switch"
 import { ThemeProvider, useTheme } from "./components/theme-provider"
 import {
@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "./components/ui/accordion"
-import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card"
+import { Card, CardContent, CardHeader } from "./components/ui/card"
 import { Input } from "./components/ui/input"
 import {
   Select,
@@ -17,8 +17,6 @@ import {
   SelectItem,
 } from "./components/ui/select"
 import { Separator } from "./components/ui/separator"
-import { Badge } from "./components/ui/badge"
-import { CalendarDays, Info } from "lucide-react"
 import { WalletCard } from "./components/WalletCard"
 import walletsData from "./data/wallets.json"
 import logo from "./assets/venta.webp"
