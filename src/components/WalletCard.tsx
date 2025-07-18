@@ -11,28 +11,15 @@ import coinbase from '../assets/coinbase.svg'
 import slope from '../assets/slope.png'
 import para from '../assets/para.webp'
 
-// Add type declaration for image imports
-declare module '*.svg' {
-  const content: string;
-  export default content;
+// Create a separate types file or move these to a global.d.ts
+type ImageImport = string;
+declare global {
+  interface ImportMetaEnv {
+    BASE_URL: string;
+  }
 }
 
-declare module '*.webp' {
-  const content: string;
-  export default content;
-}
-
-declare module '*.png' {
-  const content: string;
-  export default content;
-}
-
-declare module '*.jpeg' {
-  const content: string;
-  export default content;
-}
-
-const walletImages: Record<string, string> = {
+const walletImages: Record<string, ImageImport> = {
   phantom,
   cakewallet,
   fuse,
@@ -57,7 +44,7 @@ export type WalletCardProps = {
     fiat_on_ramp: boolean;
     fiat_off_ramp: boolean;
     push_notifications: boolean;
-    solana_pay_qr: string; // Updated to match App.tsx type
+    solana_pay_qr: string;
   };
   version_tested: string;
   test_date: string;
@@ -88,6 +75,12 @@ export function WalletCard({
   notes,
 }: WalletCardProps) {
   const imgSrc = image && walletImages[image] ? walletImages[image] : image_url || undefined;
+
+  // Helper function to determine Solana Pay QR status
+  const getSolanaPayStatus = (value: string) => {
+    return value === "Yes" || value === "Partial" || value === "No";
+  };
+
   return (
     <Card className="bg-muted/40 dark:bg-background border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl mx-auto mt-8 text-card-foreground w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[420px] h-[540px] flex flex-col will-change-transform transition-transform duration-200 ease-out hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-2xl">
       <CardContent className="p-4 sm:p-6 md:p-8 flex flex-col h-full">
@@ -143,7 +136,7 @@ export function WalletCard({
               key={key}
               className={`rounded-full px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium flex items-center gap-1.5 ${
                 key === 'solana_pay_qr'
-                  ? features[key] === true || features[key] === "Yes"
+                  ? features[key] === "Yes"
                     ? "bg-emerald-900/50 text-emerald-200 border-emerald-800"
                     : features[key] === "Partial"
                     ? "bg-yellow-900/40 text-yellow-200 border-yellow-800"
@@ -155,7 +148,7 @@ export function WalletCard({
             >
               <span className="flex-shrink-0">
                 {key === 'solana_pay_qr'
-                  ? features[key] === true || features[key] === "Yes"
+                  ? features[key] === "Yes"
                     ? "✓"
                     : features[key] === "Partial"
                     ? "~"
