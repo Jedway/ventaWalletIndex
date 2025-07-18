@@ -76,11 +76,6 @@ export function WalletCard({
 }: WalletCardProps) {
   const imgSrc = image && walletImages[image] ? walletImages[image] : image_url || undefined;
 
-  // Helper function to determine Solana Pay QR status
-  const getSolanaPayStatus = (value: string) => {
-    return value === "Yes" || value === "Partial" || value === "No";
-  };
-
   return (
     <Card className="bg-muted/40 dark:bg-background border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl mx-auto mt-8 text-card-foreground w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[420px] h-[540px] flex flex-col will-change-transform transition-transform duration-200 ease-out hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-2xl">
       <CardContent className="p-4 sm:p-6 md:p-8 flex flex-col h-full">
