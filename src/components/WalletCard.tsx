@@ -43,6 +43,18 @@ export type WalletCardProps = {
   notes: string;
 };
 
+type FeatureKey = keyof WalletCardProps['features'];
+
+const FEATURE_CONFIG: { key: FeatureKey; label: string }[] = [
+  { key: 'in_app_dex_swap', label: 'DEX Swap' },
+  { key: 'nft_gallery', label: 'NFT Gallery' },
+  { key: 'push_notifications', label: 'Push Notifications' },
+  { key: 'in_app_staking', label: 'Staking' },
+  { key: 'fiat_on_ramp', label: 'Fiat On-Ramp' },
+  { key: 'fiat_off_ramp', label: 'Fiat Off-Ramp' },
+  { key: 'solana_pay_qr', label: 'Solana Pay QR' },
+];
+
 export function WalletCard({
   name,
   image,
@@ -105,15 +117,7 @@ export function WalletCard({
 
         {/* Features Grid */}
         <div className="grid grid-cols-2 gap-1.5 mb-4">
-          {[
-            { key: 'in_app_dex_swap', label: 'DEX Swap' },
-            { key: 'nft_gallery', label: 'NFT Gallery' },
-            { key: 'push_notifications', label: 'Push Notifications' },
-            { key: 'in_app_staking', label: 'Staking' },
-            { key: 'fiat_on_ramp', label: 'Fiat On-Ramp' },
-            { key: 'fiat_off_ramp', label: 'Fiat Off-Ramp' },
-            { key: 'solana_pay_qr', label: 'Solana Pay QR' },
-          ].map(({ key, label }) => (
+          {FEATURE_CONFIG.map(({ key, label }) => (
             <Badge
               key={key}
               className={`rounded-full px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium flex items-center gap-1.5 ${
