@@ -87,8 +87,6 @@ function HamburgerMenu({ open, setOpen, children, statsAccordion }: { open: bool
             <span className="text-2xl">×</span>
           </button>
           {/* Add your menu items here */}
-          <a href="#" className="text-lg font-medium py-2 px-2 rounded hover:bg-muted transition-colors">Home</a>
-          <a href="#" className="text-lg font-medium py-2 px-2 rounded hover:bg-muted transition-colors">Wallets</a>
           <a href="#" className="text-lg font-medium py-2 px-2 rounded hover:bg-muted transition-colors">About</a>
           <div className="pt-4 border-t border-border mt-4 flex justify-center">
             {children}
@@ -228,11 +226,13 @@ export default function App() {
         </Card>
       </div>
       {/* Scrollable Content */}
-      <div className="pt-[8.5rem] pb-24 w-full flex flex-col items-center justify-center gap-4 overflow-y-auto min-h-screen">
+      <div className="pt-[8.5rem] pb-24 w-full min-h-screen">
         <Separator className="w-full" />
-        {filteredWallets.map((wallet) => (
-          <WalletCard key={wallet.name} {...wallet} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center mt-4">
+          {filteredWallets.map((wallet) => (
+            <WalletCard key={wallet.name} {...wallet} />
+          ))}
+        </div>
       </div>
       <footer className="w-full bg-background border-t border-border shadow-inner py-4 px-6 text-center text-muted-foreground fixed bottom-0 left-0 z-50">
         <span>© 2025 Solana Wallet Index.</span>
