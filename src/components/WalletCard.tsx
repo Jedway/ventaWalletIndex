@@ -11,6 +11,27 @@ import coinbase from '../assets/coinbase.svg'
 import slope from '../assets/slope.png'
 import para from '../assets/para.webp'
 
+// Add type declaration for image imports
+declare module '*.svg' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.webp' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.png' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.jpeg' {
+  const content: string;
+  export default content;
+}
+
 const walletImages: Record<string, string> = {
   phantom,
   cakewallet,
@@ -36,7 +57,7 @@ export type WalletCardProps = {
     fiat_on_ramp: boolean;
     fiat_off_ramp: boolean;
     push_notifications: boolean;
-    solana_pay_qr: string | boolean;
+    solana_pay_qr: string; // Updated to match App.tsx type
   };
   version_tested: string;
   test_date: string;
@@ -68,7 +89,7 @@ export function WalletCard({
 }: WalletCardProps) {
   const imgSrc = image && walletImages[image] ? walletImages[image] : image_url || undefined;
   return (
-    <Card className="bg-muted/40 dark:bg-background border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl mx-auto mt-8 text-card-foreground w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[420px] h-[540px] flex flex-col">
+    <Card className="bg-muted/40 dark:bg-background border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl mx-auto mt-8 text-card-foreground w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[420px] h-[540px] flex flex-col will-change-transform transition-transform duration-200 ease-out hover:scale-[1.01] hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-2xl">
       <CardContent className="p-4 sm:p-6 md:p-8 flex flex-col h-full">
         {/* Header */}
         <div className="flex items-start gap-3 mb-3">
