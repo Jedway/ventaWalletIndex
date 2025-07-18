@@ -20,6 +20,22 @@ import { Separator } from "./components/ui/separator"
 import { WalletCard } from "./components/WalletCard"
 import walletsData from "./data/wallets.json"
 import logo from "./assets/venta.webp"
+import { Menu } from "lucide-react"
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "./components/ui/navigation-menu"
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerClose,
+} from "./components/ui/drawer"
 
 function ThemeSwitch() {
   const { theme, setTheme } = useTheme()
@@ -34,12 +50,91 @@ function ThemeSwitch() {
   )
 }
 
+function StatsDrawer({ totalWallets, selfCustody, mobile, qrSupport }: { totalWallets: number; selfCustody: number; mobile: number; qrSupport: number }) {
+  return (
+    <Drawer direction="right">
+      <DrawerTrigger asChild>
+        <button className="inline-flex h-9 items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground transition-colors border border-border shadow-sm">
+          Stats
+        </button>
+      </DrawerTrigger>
+      <DrawerContent className="max-w-xs w-full sm:max-w-sm">
+        <DrawerHeader>
+          <DrawerTitle>Stats</DrawerTitle>
+        </DrawerHeader>
+        <div className="grid grid-cols-2 gap-4 p-4">
+          <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+            <span className="text-2xl font-bold">{totalWallets}</span>
+            <span className="text-xs text-muted-foreground mt-1">Total Wallets</span>
+          </div>
+          <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+            <span className="text-2xl font-bold">{selfCustody}</span>
+            <span className="text-xs text-muted-foreground mt-1">Self-Custody</span>
+          </div>
+          <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+            <span className="text-2xl font-bold">{mobile}</span>
+            <span className="text-xs text-muted-foreground mt-1">Mobile</span>
+          </div>
+          <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+            <span className="text-2xl font-bold">{qrSupport}</span>
+            <span className="text-xs text-muted-foreground mt-1">QR Support</span>
+          </div>
+        </div>
+        <DrawerClose asChild>
+          <button className="mt-4 mx-auto block rounded bg-accent px-4 py-2 text-sm font-medium text-accent-foreground hover:bg-accent/80 transition">Close</button>
+        </DrawerClose>
+      </DrawerContent>
+    </Drawer>
+  )
+}
+
+function HamburgerMenu({ open, setOpen, children, statsAccordion }: { open: boolean; setOpen: (v: boolean) => void; children?: React.ReactNode; statsAccordion?: React.ReactNode }) {
+  return (
+    <>
+      <button
+        className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-ring"
+        aria-label="Open menu"
+        onClick={() => setOpen(!open)}
+      >
+        <Menu className="h-7 w-7" />
+      </button>
+      <div
+        className={`fixed inset-0 z-50 bg-black/40 flex justify-end md:hidden transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        aria-hidden={!open}
+      >
+        <nav
+          className={`bg-background w-64 h-full shadow-lg p-6 flex flex-col gap-6 transform transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          <button
+            className="self-end mb-4 p-2 rounded focus:outline-none focus:ring-2 focus:ring-ring"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          >
+            <span className="text-2xl">×</span>
+          </button>
+          {/* Add your menu items here */}
+          <a href="#" className="text-lg font-medium py-2 px-2 rounded hover:bg-muted transition-colors">Home</a>
+          <a href="#" className="text-lg font-medium py-2 px-2 rounded hover:bg-muted transition-colors">Wallets</a>
+          <a href="#" className="text-lg font-medium py-2 px-2 rounded hover:bg-muted transition-colors">About</a>
+          <div className="pt-4 border-t border-border mt-4 flex justify-center">
+            {children}
+          </div>
+          <div className="pt-4 border-t border-border mt-4">
+            {statsAccordion}
+          </div>
+        </nav>
+      </div>
+    </>
+  )
+}
+
 export default function App() {
   // Filter/search state
   const [search, setSearch] = useState("");
   const [platform, setPlatform] = useState("all");
   const [custody, setCustody] = useState("all");
   const [feature, setFeature] = useState("all");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Filtering logic
   const filteredWallets = useMemo(() => {
@@ -80,11 +175,23 @@ export default function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       {/* Fixed Header */}
       <header className="w-full bg-background border-b border-border shadow-lg rounded-xl py-4 px-6 flex items-center justify-between fixed top-0 left-0 z-50">
-        <img src={logo} alt="Solana Wallet Index Logo" className="h-8 w-auto invert dark:invert-0" />
-        <ThemeSwitch />
+        <div className="flex items-center gap-4">
+          <img src={logo} alt="Solana Wallet Index Logo" className="h-8 w-auto invert dark:invert-0" />
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="md:hidden">
+            <HamburgerMenu open={menuOpen} setOpen={setMenuOpen} statsAccordion={<StatsDrawer totalWallets={totalWallets} selfCustody={selfCustody} mobile={mobile} qrSupport={qrSupport} />}>
+              <ThemeSwitch />
+            </HamburgerMenu>
+          </div>
+          <div className="hidden md:flex items-center gap-3">
+            <ThemeSwitch />
+            <StatsDrawer totalWallets={totalWallets} selfCustody={selfCustody} mobile={mobile} qrSupport={qrSupport} />
+          </div>
+        </div>
       </header>
-      {/* Fixed Filter Card */}
-      <div className="w-full flex justify-center fixed top-20 left-0 z-40 px-2">
+      {/* Sticky Filter Card */}
+      <div className="w-full flex justify-center sticky top-20 left-0 px-2 z-30">
         <Card className="w-full max-w-4xl shadow-xl px-4 sm:px-6 md:px-8 py-2 flex items-center justify-center">
           <CardHeader className="pb-2 hidden" />
           <CardContent className="pt-0 w-full flex items-center justify-center">
@@ -92,46 +199,55 @@ export default function App() {
               <div className="flex-1 min-w-[200px]">
                 <Input placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} />
               </div>
-              <div className="flex flex-col md:flex-row gap-2 md:gap-4 w-full md:w-auto">
-                <Select value={platform} onValueChange={setPlatform}>
-                  <SelectTrigger className="w-40">
-                    <SelectValue placeholder="Platform" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="ios">iOS</SelectItem>
-                    <SelectItem value="android">Android</SelectItem>
-                    <SelectItem value="chrome">Chrome</SelectItem>
-                    <SelectItem value="firefox">Firefox</SelectItem>
-                    <SelectItem value="windows">Windows</SelectItem>
-                    <SelectItem value="macos">macOS</SelectItem>
-                    <SelectItem value="linux">Linux</SelectItem>
-                    <SelectItem value="hardware (usb)">Hardware (USB)</SelectItem>
-                    <SelectItem value="hardware (bluetooth)">Hardware (Bluetooth)</SelectItem>
-                    <SelectItem value="hardware (nfc card)">Hardware (NFC card)</SelectItem>
-                    <SelectItem value="mobile app">Mobile App</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={custody} onValueChange={setCustody}>
-                  <SelectTrigger className="w-40">
-                    <SelectValue placeholder="Custody Model" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="self">Self-custody</SelectItem>
-                    <SelectItem value="third-party">Custodial</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={feature} onValueChange={setFeature}>
-                  <SelectTrigger className="w-40">
-                    <SelectValue placeholder="Features" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="staking">Staking</SelectItem>
-                    <SelectItem value="nft">NFT Support</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="flex flex-row gap-2 md:gap-4 w-full md:w-auto py-2 md:py-0">
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className="text-xs font-medium text-muted-foreground mb-1 text-center">Platform</span>
+                  <Select value={platform} onValueChange={setPlatform}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Platform" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="ios">iOS</SelectItem>
+                      <SelectItem value="android">Android</SelectItem>
+                      <SelectItem value="chrome">Chrome</SelectItem>
+                      <SelectItem value="firefox">Firefox</SelectItem>
+                      <SelectItem value="windows">Windows</SelectItem>
+                      <SelectItem value="macos">macOS</SelectItem>
+                      <SelectItem value="linux">Linux</SelectItem>
+                      <SelectItem value="hardware (usb)">Hardware (USB)</SelectItem>
+                      <SelectItem value="hardware (bluetooth)">Hardware (Bluetooth)</SelectItem>
+                      <SelectItem value="hardware (nfc card)">Hardware (NFC card)</SelectItem>
+                      <SelectItem value="mobile app">Mobile App</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className="text-xs font-medium text-muted-foreground mb-1 text-center">Custody</span>
+                  <Select value={custody} onValueChange={setCustody}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Custody Model" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="self">Self-custody</SelectItem>
+                      <SelectItem value="third-party">Custodial</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className="text-xs font-medium text-muted-foreground mb-1 text-center">Features</span>
+                  <Select value={feature} onValueChange={setFeature}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Features" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="staking">Staking</SelectItem>
+                      <SelectItem value="nft">NFT Support</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -139,42 +255,13 @@ export default function App() {
       </div>
       {/* Scrollable Content */}
       <div className="pt-[8.5rem] pb-24 w-full flex flex-col items-center justify-center gap-4 overflow-y-auto min-h-screen">
-        <Card className="w-full max-w-4xl shadow-xl px-4 sm:px-6 md:px-8">
-          <CardContent className="px-0">
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Wallet Index Stats:</AccordionTrigger>
-                <AccordionContent>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
-                      <span className="text-2xl font-bold">{totalWallets}</span>
-                      <span className="text-xs text-muted-foreground mt-1">Total Wallets</span>
-                    </div>
-                    <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
-                      <span className="text-2xl font-bold">{selfCustody}</span>
-                      <span className="text-xs text-muted-foreground mt-1">Self-Custody</span>
-                    </div>
-                    <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
-                      <span className="text-2xl font-bold">{mobile}</span>
-                      <span className="text-xs text-muted-foreground mt-1">Mobile</span>
-                    </div>
-                    <div className="bg-card border border-border rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
-                      <span className="text-2xl font-bold">{qrSupport}</span>
-                      <span className="text-xs text-muted-foreground mt-1">QR Support</span>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
         <Separator className="w-full" />
         {filteredWallets.map((wallet) => (
           <WalletCard key={wallet.name} {...wallet} />
         ))}
       </div>
       <footer className="w-full bg-background border-t border-border shadow-inner py-4 px-6 text-center text-muted-foreground fixed bottom-0 left-0 z-50">
-        <span>© 2025 Solana Wallet Index. All rights reserved.</span>
+        <span>© 2025 Solana Wallet Index.</span>
       </footer>
     </ThemeProvider>
   )

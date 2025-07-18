@@ -3,6 +3,7 @@
     "wallets": [
       {
         "name": "Phantom",
+        "image": "phantom",
         "image_url": "https://phantom.app/favicon.ico",
         "platforms": ["iOS", "Android", "Chrome", "Firefox"],
         "custody_model": "Self-custody",
@@ -57,6 +58,7 @@
       },
       {
         "name": "Glow",
+        "image": "glow",
         "image_url": "https://glow.app/favicon.ico",
         "platforms": ["iOS", "Android"],
         "custody_model": "Self-custody",
@@ -75,6 +77,7 @@
       },
       {
         "name": "Decaf",
+        "image": "decaf",
         "image_url": "https://decaf.so/favicon.ico",
         "platforms": ["iOS", "Android"],
         "custody_model": "Custodial",
@@ -147,6 +150,7 @@
       },
       {
         "name": "Slope",
+        "image": "slope",
         "image_url": "https://slope.finance/favicon.ico",
         "platforms": ["iOS", "Android"],
         "custody_model": "Self-custody",
@@ -201,6 +205,7 @@
       },
       {
         "name": "Guarda Wallet",
+        "image": "guarda",
         "image_url": "https://guarda.com/favicon.ico",
         "platforms": ["iOS", "Android", "Chrome", "Firefox", "Windows", "macOS"],
         "custody_model": "Self-custody",
@@ -219,6 +224,7 @@
       },
       {
         "name": "Fuse Wallet",
+        "image": "fuse",
         "image_url": "https://fuse.io/favicon.ico",
         "platforms": ["Android", "iOS"],
         "custody_model": "Self-custody (seedless via 2FA)",
@@ -237,6 +243,7 @@
       },
       {
         "name": "Cake Wallet",
+        "image": "cakewallet",
         "image_url": "https://cakewallet.com/favicon.ico",
         "platforms": ["iOS", "Android"],
         "custody_model": "Self-custody",
@@ -255,6 +262,7 @@
       },
       {
         "name": "Para",
+        "image": "para",
         "image_url": "https://para.space/favicon.ico",
         "platforms": ["Chrome", "Firefox"],
         "custody_model": "Self-custody",
@@ -273,6 +281,7 @@
       },
       {
         "name": "Coinbase Wallet",
+        "image": "coinbase",
         "image_url": "https://www.coinbase.com/wallet/favicon.ico",
         "platforms": ["iOS", "Android", "Chrome", "Firefox"],
         "custody_model": "Self-custody",

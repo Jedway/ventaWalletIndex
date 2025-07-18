@@ -1,9 +1,31 @@
 import { Card, CardContent } from "./ui/card"
 import { Badge } from "./ui/badge"
 import { CalendarDays, Info } from "lucide-react"
+import phantom from '../assets/phantom.svg'
+import cakewallet from '../assets/cakewallet.webp'
+import fuse from '../assets/fuse.png'
+import guarda from '../assets/guarda.png'
+import decaf from '../assets/decaf.png'
+import glow from '../assets/glow.jpeg'
+import coinbase from '../assets/coinbase.svg'
+import slope from '../assets/slope.png'
+import para from '../assets/para.webp'
+
+const walletImages: Record<string, string> = {
+  phantom,
+  cakewallet,
+  fuse,
+  guarda,
+  decaf,
+  glow,
+  coinbase,
+  slope,
+  para,
+}
 
 export type WalletCardProps = {
   name: string;
+  image?: string;
   image_url?: string;
   platforms: string[];
   custody_model: string;
@@ -23,6 +45,7 @@ export type WalletCardProps = {
 
 export function WalletCard({
   name,
+  image,
   image_url,
   platforms,
   custody_model,
@@ -31,6 +54,7 @@ export function WalletCard({
   test_date,
   notes,
 }: WalletCardProps) {
+  const imgSrc = image && walletImages[image] ? walletImages[image] : image_url || undefined;
   return (
     <Card className="bg-muted/40 dark:bg-background border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl max-w-2xl mx-auto mt-8 text-card-foreground">
       <CardContent className="p-6 md:p-8">
@@ -38,8 +62,8 @@ export function WalletCard({
         <div className="flex items-center gap-4 mb-4">
           <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-muted/30 text-2xl font-bold overflow-hidden">
             {/* Placeholder for icon/image */}
-            {image_url ? (
-              <img src={image_url} alt={name} className="w-10 h-10 object-contain" />
+            {imgSrc ? (
+              <img src={imgSrc} alt={name} className="w-10 h-10 object-contain" />
             ) : (
               "IMG"
             )}
