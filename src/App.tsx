@@ -1,41 +1,15 @@
 import { useState, useMemo } from "react"
 import { Switch } from "./components/ui/switch"
 import { ThemeProvider, useTheme } from "./components/theme-provider"
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "./components/ui/accordion"
 import { Card, CardContent, CardHeader } from "./components/ui/card"
 import { Input } from "./components/ui/input"
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "./components/ui/select"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "./components/ui/select"
 import { Separator } from "./components/ui/separator"
 import { WalletCard } from "./components/WalletCard"
 import walletsData from "./data/wallets.json"
 import logo from "./assets/venta.webp"
 import { Menu } from "lucide-react"
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-} from "./components/ui/navigation-menu"
-import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerClose,
-} from "./components/ui/drawer"
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "./components/ui/drawer"
 
 function ThemeSwitch() {
   const { theme, setTheme } = useTheme()
